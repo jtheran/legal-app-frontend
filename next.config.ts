@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/",           // Cuando el usuario entra a la raíz
+        destination: "/login", // Se le envía a la pantalla de login
+        permanent: true,       // Código de estado HTTP 301 (Redirección permanente, óptimo para SEO y rendimiento)
+      },
+    ];
+  },
 };
 
 export default nextConfig;
