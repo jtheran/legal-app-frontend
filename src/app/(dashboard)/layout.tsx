@@ -18,7 +18,8 @@ import {
   ChevronDown,
   Bell,
   CheckCheckIcon,
-  Clock
+  Clock,
+  Calendar
 } from 'lucide-react';
 
 interface NotificationItem {
@@ -48,7 +49,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       try {
         // Ajusta este endpoint según tu backend (puede ser /auth/profile o uno específico)
         const response = await apiClient.get('/notifications');
-        setNotifications(response.data.slice(0, 5));
+        setNotifications(response.data?.data?.slice(0, 5) || [] );
       } catch (err) {
         console.error('Error al cargar alertas del header:', err);
       }
@@ -81,6 +82,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const menuItems = [
     { name: 'Panel Principal', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'Mis Eventos', href: '/events', icon: Calendar },
     { name: 'Mis Casos', href: '/cases', icon: Scale },
     { name: 'Clientes', href: '/client', icon: Users },
   ];

@@ -31,7 +31,12 @@ export default function LoginPage() {
       login(accessToken, refreshToken, user);
 
       // Redirección inmediata al flujo de trabajo auditado
+      if(user.role == 'ADMIN'){
+        router.push('/admin/dashboard');
+      }
+      
       router.push('/dashboard');
+      
       
     } catch (err: any) {
       console.error('Error en login:', err);
